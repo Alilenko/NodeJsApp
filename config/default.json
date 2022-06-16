@@ -1,0 +1,6 @@
+{
+    "port": "5008",
+    "jwtSecret": "123",
+    "mongoUri": "mongodb+srv://user123:user123@cluster0.vidbh.mongodb.net/?retryWrites=true&w=majority",
+    "baseUrl": "http://localhost:5008"
+}
