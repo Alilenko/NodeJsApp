@@ -27,10 +27,10 @@ const getEditPost = (req, res) => {
 };
 
 const editPost = (req, res) => {
-  const { title, owner, text } = req.body;
+  const { title, owner, text, userName } = req.body;
   const { id } = req.params;
-  Post.findByIdAndUpdate(id, { title, owner, text })
-    .then((result) => res.redirect(`/posts/${id}`))
+  Post.findByIdAndUpdate(id, { title, owner, text, userName })
+    .then((result) => res.status(200).json({ result }))
     .catch((error) => handleError(res, error));
 };
 
@@ -41,13 +41,9 @@ const getPosts = (req, res) => {
     .catch((error) => handleError(res, error));
 };
 
-const getAddPost = (req, res) => {
-  res.render(createPath("add-post"), { title });
-};
-
 const addPost = (req, res) => {
-  const { title, owner, text } = req.body;
-  const post = new Post({ title, owner, text });
+  const { title, owner, text, userName } = req.body;
+  const post = new Post({ title, owner, text, userName });
   post
     .save()
     .then((result) => res.status(200).json({ result }))
@@ -60,6 +56,5 @@ module.exports = {
   getEditPost,
   editPost,
   getPosts,
-  getAddPost,
   addPost,
 };
